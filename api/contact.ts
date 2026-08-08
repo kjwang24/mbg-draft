@@ -1,7 +1,7 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import nodemailer from "nodemailer";
 
-const TO_EMAIL = "kwanga@mit.edu"; // "mbgci@mit.edu";
+const TO_EMAIL = "mbgci@mit.edu";
 
 type ContactBody = {
   name?: unknown;
