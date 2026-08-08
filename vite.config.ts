@@ -31,6 +31,14 @@ export default defineConfig({
     },
   },
 
+  server: {
+    // Forward API calls to `vercel dev --listen 3001`, run separately, so the
+    // frontend can use plain `vite` instead of vercel dev's flaky Vite proxying.
+    proxy: {
+      '/api': 'http://localhost:3001',
+    },
+  },
+
   // File types to support raw imports. Never add .css, .tsx, or .ts files to this.
   assetsInclude: ['**/*.svg', '**/*.csv'],
 })

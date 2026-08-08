@@ -1,5 +1,4 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import nodemailer from "nodemailer";
 
 const TO_EMAIL = "mbgci@mit.edu";
 
@@ -40,20 +39,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(400).json({ ok: false, error: "Please provide a valid email" });
   }
 
-  if (!process.env.SMTP_PASS) {
-    console.error("contact: SMTP_PASS is not set");
+  if (!process.env.RESEND_API_KEY) {
+    console.error("contact: RESEND_API_KEY is not set");
     return res.status(500).json({ ok: false, error: "Emailing isn't configured on the server." });
   }
-
-  const transporter = nodemailer.createTransport({
-    host: "smtp.resend.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: "resend",
-      pass: process.env.SMTP_PASS,
-    },
-  });
 
   const fields: [string, string][] = [
     ["Name", name],
@@ -63,22 +52,34 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   ];
 
   try {
-    await transporter.sendMail({
-      from: process.env.SENDER_EMAIL || "MBGCI Website <no-reply@mbgci.com>",
-      to: TO_EMAIL,
-      replyTo: email,
-      subject: subject ? subject : `Client Inquiry from ${name}`,
-      text: [...fields.map(([label, value]) => `${label}: ${value}`), "", message].join("\n"),
-      html: [
-        "<table cellpadding=\"4\" cellspacing=\"0\">",
-        ...fields.map(
-          ([label, value]) =>
-            `<tr><td><strong>${escapeHtml(label)}</strong></td><td>${escapeHtml(value)}</td></tr>`
-        ),
-        "</table>",
-        `<p>${escapeHtml(message).replace(/\n/g, "<br />")}</p>`,
-      ].join(""),
+    const resendRes = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: process.env.SENDER_EMAIL || "MBGCI Website <no-reply@mbgci.com>",
+        to: TO_EMAIL,
+        reply_to: email,
+        subject: subject ? subject : `Client Inquiry from ${name}`,
+        text: [...fields.map(([label, value]) => `${label}: ${value}`), "", message].join("\n"),
+        html: [
+          "<table cellpadding=\"4\" cellspacing=\"0\">",
+          ...fields.map(
+            ([label, value]) =>
+              `<tr><td><strong>${escapeHtml(label)}</strong></td><td>${escapeHtml(value)}</td></tr>`
+          ),
+          "</table>",
+          `<p>${escapeHtml(message).replace(/\n/g, "<br />")}</p>`,
+        ].join(""),
+      }),
     });
+
+    if (!resendRes.ok) {
+      const errBody = await resendRes.text().catch(() => "");
+      throw new Error(`Resend API responded ${resendRes.status}: ${errBody}`);
+    }
 
     return res.status(200).json({ ok: true });
   } catch (err) {
