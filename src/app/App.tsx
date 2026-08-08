@@ -6,11 +6,13 @@ import liamImg from "../imports/Liam.jpg";
 import annaImg from "../imports/Anna.jpg";
 import danielImg from "../imports/Daniel.jpg";
 import girl3Img from "../imports/Girl_3.jpg";
+import erikaImg from "../imports/Erika.jpg";
 import aliceImg from "../imports/Girl_2-1.jpg";
 import lilianImg from "../imports/Lilian-1.jpg";
 import katelynImg from "../imports/Girl_1.jpg";
 import davinImg from "../imports/Davin-2.jpg";
 import mbgLogoImg from "../imports/MBG-logo-transparent.png";
+import mbgGroupPhotoImg from "../imports/mbg-group-photo.jpg";
 
 type Page = "about" | "practice" | "team" | "join";
 
@@ -18,36 +20,36 @@ const PAGES: { id: Page; label: string }[] = [
   { id: "about", label: "about" },
   { id: "practice", label: "practice areas" },
   { id: "team", label: "team" },
-  { id: "join", label: "join us" },
+  { id: "join", label: "work with us" },
 ];
 
 const PRACTICES = [
   {
-    tag: "[ strategy ]",
+    // tag: "[ strategy ]",
     title: "Strategy",
     subtitle: "Market landscape, competitive positioning, commercialization pathways",
-    desc: "We help life-science organizations think through where they are and where they want to go. That might mean a market landscape, a competitive review, or working through a commercialization pathway. We try to be useful, not exhaustive.",
+    desc: "We help you bridge where you are and where you want to go. That might look like researching relevant markets, reviewing the trajectories of competitors, or helping you navigate regulation.",
     price: "Starting at $1000",
   },
   {
-    tag: "[ operations ]",
+    // tag: "[ operations ]",
     title: "Operations",
-    subtitle: "Process mapping, organizational design, execution planning",
-    desc: "Helping teams get organized. We work through operational bottlenecks, map out processes, and help with execution planning for groups that are growing faster than their systems.",
+    subtitle: "Process mapping, organizational structuring, execution planning",
+    desc: "We analyze bottlenecks in your team's workflows and operations, and help plan near-term courses of action for groups whose systems are growing faster than their bandwidth.",
     price: "Starting at $1000",
   },
   {
-    tag: "[ digital presence ]",
+    // tag: "[ digital presence ]",
     title: "Digital Presence",
-    subtitle: "Website, branding, and external communications strategy",
-    desc: "Website strategy, brand positioning, and external communications for labs, startups, and research groups that need to present themselves clearly to outside audiences.",
+    subtitle: "Website, branding, external communications strategy",
+    desc: "Online presence and partnership communications for startups and nonprofits who need to present themselves clearly to outside audiences.",
     price: "Starting at $750",
   },
   {
-    tag: "[ marketing ]",
+    // tag: "[ marketing ]",
     title: "Marketing",
     subtitle: "Customer discovery, messaging, go-to-market strategy",
-    desc: "Customer discovery, messaging, and go-to-market planning for early-stage life-science companies. We are not a marketing agency — we help you figure out the strategy before you build anything.",
+    desc: "We research prospective customer populations and suggest go-to-market steps for companies in their early stages. We aren't marketers, rather we help with high-level strategy.",
     price: "Starting at $750",
   },
 ];
@@ -61,7 +63,7 @@ const ADDITIONAL_SERVICES = [
 const CORE_CONSULTANTS = [
   {
     name: "Liam Aranda-Michel",
-    focus: "[ bioengineering · regenerative medicine ]",
+    focus: "[ bioprinting · regenerative medicine ]",
     bio: "Studies bioengineering with a focus in regenerative medicine. Research in 3D bioprinting.",
     photo: liamImg,
   },
@@ -73,28 +75,28 @@ const CORE_CONSULTANTS = [
   },
   {
     name: "Zain Arfoosh",
-    focus: "[ pharmaceutical devices · intrathecal delivery ]",
+    focus: "[ drug delivery · pharmaceutical devices ]",
     bio: "Studies bioengineering and focuses on pharmaceutical devices with research in drug delivery and cell therapy systems.",
     photo: zainImg,
   },
   {
     name: "Katherine Wang",
-    focus: "[ computational oncology ]",
+    focus: "[ computational biology · economics ]",
     bio: "Backend engineering background applied to computational biology and oncology data analysis.",
     photo: katherineImg,
+  },
+  {
+    name: "Anna Mohanty",
+    focus: "[ immunology · neurology ]",
+    bio: "Studies translational immunology with a focus on brain infection and neuroinflammation.",
+    photo: annaImg,
   },
 ];
 
 const CONSULTING_PARTNERS = [
   {
-    name: "Erika Ruiz",
-    focus: "[ biomedical economics · neural signal processing ]",
-    bio: "Studies biomedical economics with experience in neural signal processing and frequency analysis.",
-    photo: null,
-  },
-  {
     name: "Daniel Patterson",
-    focus: "[ molecular biology · protein expression ]",
+    focus: "[ molecular biology · proteomics ]",
     bio: "Studies molecular biology and computer science with a research focus in protein expression.",
     photo: danielImg,
   },
@@ -105,49 +107,49 @@ const CONSULTING_PARTNERS = [
     photo: girl3Img,
   },
   {
-    name: "Anna Mohanty",
-    focus: "[ immunology · neuroinflammation ]",
-    bio: "Studies translational immunology with a focus on brain infection and neuroinflammation.",
-    photo: annaImg,
-  },
-  {
     name: "Davin Huynh",
-    focus: "[ drug delivery systems ]",
+    focus: "[ drug delivery ]",
     bio: "Research background in nanoparticle-based and targeted drug delivery systems.",
     photo: davinImg,
   },
   {
     name: "Alice Situ",
-    focus: "[ microfluidics · antibody profiling ]",
+    focus: "[ microfluidics · immunology ]",
     bio: "Immunology and microfluidics background with experience in antibody profiling and PCR analysis.",
     photo: aliceImg,
   },
   {
     name: "Lilian Gan",
-    focus: "[ lung cancer · translational oncology ]",
+    focus: "[ translational oncology ]",
     bio: "Studies lung cancer biology with a background in translational oncology and tumor tracing.",
     photo: lilianImg,
   },
   {
     name: "Katelyn Lee",
-    focus: "[ protein signaling · chemical engineering ]",
+    focus: "[ cell signaling · chemical engineering ]",
     bio: "Chemical engineering background with a focus on protein signaling and translational science.",
     photo: katelynImg,
+  },
+  {
+    name: "Erika Ruiz",
+    focus: "[ healthcare economics · neurology ]",
+    bio: "Studies biomedical economics with experience in neural signal processing and frequency analysis.",
+    photo: erikaImg,
   },
 ];
 
 const TESTIMONIALS = [
   {
-    quote: "The MIT-BCG team impressed us with their ability to navigate a highly complex and ever-changing regulatory landscape and identify the most appropriate and accelerated path forward for our product. Their work reflects the kind of rigorous, creative thinking that makes a real difference.",
-    name: "Julie",
-    org: "OpenBiome",
-    tag: "[ regulatory strategy ]",
+    quote: "The MBGCI team impressed us with their ability to navigate a highly complex and ever-changing regulatory landscape and identify the most appropriate and accelerated path forward for our product. Their work reflects the kind of rigorous, creative thinking that makes a real difference.",
+    name: "Julie O'Brien",
+    org: "CEO, OpenBiome",
+    tag: "[ strategy ]",
   },
   {
     quote: "Your suggested path forward truly captures the vision we have for the organization, and it was energizing to see it reflected so clearly in your recommendations. Thank you for the thoughtful insights, feedback, and thorough analysis.",
-    name: "Wendy",
-    org: "BOSLab",
-    tag: "[ strategic analysis ]",
+    name: "Wendy Pouliot",
+    org: "President, BOSLab",
+    tag: "[ digital presence ]",
   },
 ];
 
@@ -186,11 +188,13 @@ export default function App() {
           content: '';
           position: absolute;
           left: 0; bottom: -1px;
-          width: 0; height: 1px;
+          width: 100%; height: 1px;
           background: currentColor;
-          transition: width 0.25s ease;
+          transform: scaleX(0);
+          transform-origin: left;
+          transition: transform 0.25s ease;
         }
-        .ul-link:hover::after { width: 100%; }
+        .ul-link:hover::after { transform: scaleX(1); }
       `}</style>
 
       {/* NAV */}
@@ -258,10 +262,10 @@ export default function App() {
             style={{ filter: "grayscale(100%) brightness(0.5)" }}
           />
           <span className="font-mono-dm text-[11px] text-muted-foreground/50">
-            © 2025 MIT Biotech Consulting Group
+            © 2026 MIT Biotech Consulting Group
           </span>
           <div className="flex gap-6">
-            {(["about", "practice areas", "team", "join us"] as const).map((l, i) => (
+            {(["about", "practice areas", "team", "work with us"] as const).map((l, i) => (
               <button
                 key={l}
                 onClick={() => nav(PAGES[i].id)}
@@ -279,41 +283,41 @@ export default function App() {
 
 /* ─── TICKER ─────────────────────────────────────────────────── */
 
-const TICKER_WORDS = [
-  "strategy", "operations", "digital presence", "marketing",
-  "oncology", "immunology", "rare disease", "CNS",
-  "gene therapy", "synthetic biology", "drug delivery",
-  "market access", "clinical development", "commercialization",
-];
+// const TICKER_WORDS = [
+//   "strategy", "operations", "digital presence", "marketing",
+//   "oncology", "immunology", "rare disease", "CNS",
+//   "gene therapy", "synthetic biology", "drug delivery",
+//   "market access", "clinical development", "commercialization",
+// ];
 
-function Ticker() {
-  const doubled = [...TICKER_WORDS, ...TICKER_WORDS];
-  return (
-    <div className="border-t border-border overflow-hidden py-7 select-none"
-      style={{ WebkitMaskImage: "linear-gradient(90deg,transparent,black 6%,black 94%,transparent)" }}>
-      <style>{`
-        @keyframes ticker {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-        .ticker-inner {
-          display: flex;
-          width: max-content;
-          animation: ticker 28s linear infinite;
-        }
-        .ticker-inner:hover { animation-play-state: paused; cursor: default; }
-      `}</style>
-      <div className="ticker-inner">
-        {doubled.map((w, i) => (
-          <span key={i} className="inline-flex items-center gap-5 px-5">
-            <span className="text-[1.6rem] font-bold text-foreground whitespace-nowrap">{w}</span>
-            <span className="text-muted-foreground/30 text-xl">·</span>
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
+// function Ticker() {
+//   const doubled = [...TICKER_WORDS, ...TICKER_WORDS];
+//   return (
+//     <div className="border-t border-border overflow-hidden py-7 select-none"
+//       style={{ WebkitMaskImage: "linear-gradient(90deg,transparent,black 6%,black 94%,transparent)" }}>
+//       <style>{`
+//         @keyframes ticker {
+//           from { transform: translateX(0); }
+//           to   { transform: translateX(-50%); }
+//         }
+//         .ticker-inner {
+//           display: flex;
+//           width: max-content;
+//           animation: ticker 28s linear infinite;
+//         }
+//         .ticker-inner:hover { animation-play-state: paused; cursor: default; }
+//       `}</style>
+//       <div className="ticker-inner">
+//         {doubled.map((w, i) => (
+//           <span key={i} className="inline-flex items-center gap-5 px-5">
+//             <span className="text-[1.6rem] font-bold text-foreground whitespace-nowrap">{w}</span>
+//             <span className="text-muted-foreground/30 text-xl">·</span>
+//           </span>
+//         ))}
+//       </div>
+//     </div>
+//   );
+// }
 
 /* ─── ABOUT PAGE ─────────────────────────────────────────────── */
 
@@ -331,18 +335,18 @@ function AboutPage({ nav }: { nav: (p: Page) => void }) {
             style={{ filter: "grayscale(100%) brightness(0.2)" }}
           />
         </div>
-        <div className="mb-8">
+        {/* <div className="mb-8">
           <span className="font-mono-dm text-[11px] tracked text-muted-foreground">[ established 2025 ]</span>
-        </div>
+        </div> */}
         <h1 className="text-[clamp(2.8rem,7vw,7.5rem)] font-bold leading-[0.92] tracking-tight text-foreground max-w-4xl mb-10">Strategy for<br />biotech that<br /><span className="italic font-normal">actually works.</span></h1>
         <div className="max-w-2xl">
-          <p className="text-lg font-medium text-foreground/80 leading-relaxed mb-5">MIT Biotech Consulting Group is a student-led strategy firm based at MIT. We work with early and growth-stage biotech companies on the problems they care about.</p>
-          <p className="text-base text-muted-foreground leading-relaxed">We started the group because we kept seeing the same frustrations. Consultants good at strategy weren't good at the the science, and scientists understood the biology but not what investors or partners actually needed to hear. We try to be neither of those things.</p>
+          <p className="text-lg font-medium text-foreground/80 leading-relaxed mb-5">MIT Biotech Consulting Group is a student-led strategy team with a focus on the life sciences industry.</p>
+          <p className="text-base text-muted-foreground leading-relaxed">We started the group because we kept seeing the same frustrations. Consultants good at strategy weren't good at the the science, and scientists understood the biology but not what investors or partners needed to hear. We bring knowledge of both domains to our work.</p>
         </div>
         <div className="mt-12 flex gap-4">
           <button
             onClick={() => nav("practice")}
-            className="font-mono-dm text-[11px] tracked border border-foreground/25 px-6 py-3 text-foreground hover:border-foreground transition-all duration-200"
+            className="font-mono-dm text-[11px] tracked border border-foreground/25 px-7 py-3 text-foreground hover:border-foreground transition-all duration-200"
           >
             [ what we do ]
           </button>
@@ -356,19 +360,28 @@ function AboutPage({ nav }: { nav: (p: Page) => void }) {
         </div>
       </section>
 
+      {/* Team photo */}
+      <div className="border-b border-border">
+        <img
+          src={mbgGroupPhotoImg}
+          alt="The MIT Biotech Consulting Group team"
+          className="w-full h-[420px] md:h-[630px] lg:h-[780px] object-cover object-[50%_35%] grayscale"
+        />
+      </div>
+
       {/* How we work */}
       <section className="max-w-[1320px] mx-auto px-6 md:px-10 py-24 border-b border-border">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-16 items-start">
           <div>
             <span className="font-mono-dm text-[11px] tracked text-muted-foreground block mb-4">[ how we work ]</span>
-            <h2 className="text-4xl font-bold leading-tight">A few things we care about.</h2>
+            <h2 className="text-3xl md:text-4xl font-bold leading-tight">A few things we care about.</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-10">
             {[
-              { label: "[ read the paper ]", body: "We do primary diligence. If a company's story rests on a paper, we actually read it. We try not to be generalist consultants." },
-              { label: "[ short engagements ]", body: "Most of our work runs four to ten weeks. We aim to be useful and efficient. If a problem needs more time, we say so." },
-              { label: "[ no recycled slides ]", body: "We do not maintain a library of prior deliverables to repurpose. Every engagement gets built from scratch because the situation is usually different." },
-              { label: "[ small teams ]", body: "Four or five people from our side per engagement. The people who plan the work are the people who do it. No bait-and-switch." },
+              { label: "[ read the paper ]", body: "We do primary diligence and make maximal use of our technical backgrounds. We believe the science that drives our clients deserves close attention." },
+              { label: "[ well-defined engagements ]", body: "Most of our work runs four to ten weeks. We aim to be efficient. If a problem needs more time, we say so." },
+              { label: "[ no shortcuts ]", body: "We do not maintain a library of prior deliverables to repurpose. Every engagement gets built from scratch because the situation is usually different." },
+              { label: "[ dedicated teams ]", body: "Four or five people from our side per engagement. The same team sticks with the project throughout the partnership." },
             ].map((item) => (
               <div key={item.label}>
                 <div className="font-mono-dm text-[11px] tracked text-muted-foreground mb-3">{item.label}</div>
@@ -380,10 +393,10 @@ function AboutPage({ nav }: { nav: (p: Page) => void }) {
       </section>
 
       {/* Testimonials */}
-      <section className="max-w-[1320px] mx-auto px-6 md:px-10 py-24 border-b border-border">
+      <section className="max-w-[1320px] mx-auto px-6 md:px-10 py-24">
         <div className="mb-14">
           <span className="font-mono-dm text-[11px] tracked text-muted-foreground block mb-4">[ clients ]</span>
-          <h2 className="text-4xl font-bold leading-tight">What people say.</h2>
+          <h2 className="text-3xl md:text-4xl font-bold leading-tight">What people say.</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-px border border-border">
           {TESTIMONIALS.map((t) => (
@@ -404,7 +417,22 @@ function AboutPage({ nav }: { nav: (p: Page) => void }) {
       </section>
 
       {/* Scrolling ticker */}
-      <Ticker />
+      {/* <Ticker /> */}
+
+      {/* Closing CTA */}
+      <section>
+        <div className="max-w-[1320px] mx-auto px-6 md:px-10 py-20 border-t border-border flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold leading-tight max-w-lg">Have a problem we can help with?</h2>
+          </div>
+          <button
+            onClick={() => nav("join")}
+            className="font-mono-dm text-[11px] tracked border border-foreground/25 px-7 py-3 text-foreground hover:border-foreground transition-all duration-200 shrink-0"
+          >
+            [ reach out ]
+          </button>
+        </div>
+      </section>
     </div>
   );
 }
@@ -422,7 +450,7 @@ function PracticeRow({ p, i }: { p: typeof PRACTICES[0]; i: number }) {
       <div className="grid grid-cols-[40px_1fr_auto] md:grid-cols-[80px_1fr_auto] items-center gap-6 py-8 cursor-default">
         <div className="font-mono-dm text-[11px] text-muted-foreground/30">{String(i + 1).padStart(2, "0")}</div>
         <div>
-          <div className="font-mono-dm text-[10px] tracked text-muted-foreground mb-1">{p.tag}</div>
+          <div className="font-mono-dm text-[11px] tracked text-muted-foreground mb-1">{p.tag}</div>
           <h3 className="text-2xl md:text-3xl font-bold leading-none">{p.title}</h3>
           <p className="text-[13px] font-medium text-muted-foreground mt-1">{p.subtitle}</p>
         </div>
@@ -434,10 +462,10 @@ function PracticeRow({ p, i }: { p: typeof PRACTICES[0]; i: number }) {
 
       {/* Dropdown */}
       <div
-        className="overflow-hidden transition-all duration-300 ease-in-out"
+        className="overflow-hidden transition-all duration-300 ease-in-out pl-16 md:pl-[104px]"
         style={{ maxHeight: open ? "120px" : "0px", opacity: open ? 1 : 0 }}
       >
-        <p className="text-[14px] font-medium text-muted-foreground leading-relaxed pb-8 max-w-2xl">
+        <p className="text-base text-muted-foreground leading-relaxed pb-8">
           {p.desc}
         </p>
       </div>
@@ -454,7 +482,7 @@ function PracticePage() {
           What we<br />
           <span className="italic font-normal">can help with.</span>
         </h1>
-        <p className="mt-8 max-w-xl text-base font-medium text-muted-foreground leading-relaxed">MBG Consulting partners with life-science organizations to deliver rigorous analysis across strategy, operations, and commercialization. We work with startups, labs, and investors on a project or ongoing basis.</p>
+        <p className="mt-8 max-w-xl text-base text-muted-foreground leading-relaxed">We collaborate with early and growth-stage biotech companies, patient advocacy groups, and educational nonprofits on a semester-by-semester basis.</p>
       </div>
 
       {/* Main four areas */}
@@ -462,7 +490,7 @@ function PracticePage() {
         {PRACTICES.map((p, i) => <PracticeRow key={p.title} p={p} i={i} />)}
       </div>
 
-      {/* Why partner with us — above additional services */}
+      {/* Why partner with us — above additional services
       <div className="py-16 border-t border-border">
         <div className="font-mono-dm text-[11px] tracked text-muted-foreground mb-8">[ why partner with us ]</div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-px border border-border">
@@ -477,10 +505,10 @@ function PracticePage() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
       {/* Additional services */}
-      <div className="pb-20">
+      <div className="pt-16 pb-20 border-t border-border">
         <div className="font-mono-dm text-[11px] tracked text-muted-foreground mb-8">[ additional services ]</div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-px border border-border">
           {ADDITIONAL_SERVICES.map((s) => (
@@ -500,7 +528,7 @@ function PracticePage() {
 function MemberCard({ m }: { m: { name: string; focus: string; bio: string; photo: string | null } }) {
   const focusClean = m.focus.replace(/^\[|\]$/g, "").trim();
   return (
-    <div className="group bg-card hover:bg-secondary/40 transition-colors duration-200 flex flex-col">
+    <div className="group bg-card hover:bg-secondary/40 transition-colors duration-200 flex flex-col border border-border">
       <div className="w-full aspect-[3/4] bg-muted overflow-hidden">
         {m.photo ? (
           <img src={m.photo} alt={m.name} className="w-full h-full object-cover object-top grayscale" />
@@ -509,9 +537,9 @@ function MemberCard({ m }: { m: { name: string; focus: string; bio: string; phot
         )}
       </div>
       <div className="p-5 flex flex-col gap-1.5 flex-1">
-        <div className="font-mono-dm text-[10px] text-muted-foreground leading-snug">[ {focusClean} ]</div>
-        <h3 className="text-[14px] font-bold leading-tight">{m.name}</h3>
-        <p className="text-[11px] font-medium text-muted-foreground leading-relaxed">{m.bio}</p>
+        <h3 className="text-[18px] font-bold leading-tight">{m.name}</h3>
+        <div className="font-mono-dm text-[11px] tracked text-muted-foreground leading-snug">[ {focusClean} ]</div>
+        {/* <p className="text-[11px] font-medium text-muted-foreground leading-relaxed">{m.bio}</p> */}
       </div>
     </div>
   );
@@ -526,23 +554,27 @@ function TeamPage() {
           The people<br />
           <span className="italic font-normal">doing the work.</span>
         </h1>
-        <p className="mt-8 max-w-lg text-base font-medium text-muted-foreground leading-relaxed">We recruit from the MIT community. Our team includes people with backgrounds across life sciences, engineering, and quantitative methods who are interested in the business side of biotech.</p>
+        <p className="mt-8 max-w-lg text-base text-muted-foreground leading-relaxed">We recruit from the MIT community. Our team has a wide array of backgrounds and interests, from immunology to mechanical engineering to economics.</p>
       </div>
 
-      {/* Core Consultants — 4 columns, full bleed */}
-      <div className="max-w-[1320px] mx-auto px-6 md:px-10 pt-10 pb-3">
-        <span className="font-mono-dm text-[11px] tracked text-muted-foreground">[ core consultants ]</span>
-      </div>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-px border-y border-border">
-        {CORE_CONSULTANTS.map((m) => <MemberCard key={m.name} m={m} />)}
+      {/* Core Consultants — 3 columns, contained width */}
+      <div className="max-w-[1320px] mx-auto px-6 md:px-10 pt-10 pb-16 border-b border-border">
+        <div className="pb-3">
+          <span className="font-mono-dm text-[11px] tracked text-muted-foreground">[ core consultants ]</span>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-5">
+          {CORE_CONSULTANTS.map((m) => <MemberCard key={m.name} m={m} />)}
+        </div>
       </div>
 
-      {/* Consulting Partners — 4 columns, full bleed */}
-      <div className="max-w-[1320px] mx-auto px-6 md:px-10 pt-10 pb-3">
-        <span className="font-mono-dm text-[11px] tracked text-muted-foreground">[ consulting partners ]</span>
-      </div>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-px border-b border-border">
-        {CONSULTING_PARTNERS.map((m) => <MemberCard key={m.name} m={m} />)}
+      {/* Consulting Partners — 3 columns, contained width */}
+      <div className="max-w-[1320px] mx-auto px-6 md:px-10 pt-10 pb-20">
+        <div className="pb-3">
+          <span className="font-mono-dm text-[11px] tracked text-muted-foreground">[ consulting partners ]</span>
+        </div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-y-5">
+          {CONSULTING_PARTNERS.map((m) => <MemberCard key={m.name} m={m} />)}
+        </div>
       </div>
     </div>
   );
@@ -553,17 +585,36 @@ function TeamPage() {
 function JoinPage() {
   const [tab, setTab] = useState<"contact" | "recruit">("contact");
   const [sent, setSent] = useState(false);
-  const [form, setForm] = useState({ name: "", company: "", email: "", message: "" });
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [form, setForm] = useState({ name: "", company: "", email: "", subject: "", message: "" });
 
-  const submit = (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSent(true);
+    setSending(true);
+    setError(null);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      const data = await res.json().catch(() => null);
+      if (!res.ok || !data?.ok) {
+        throw new Error(data?.error || "Something went wrong. Please try again.");
+      }
+      setSent(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong. Please try again.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
     <div className="max-w-[1320px] mx-auto px-6 md:px-10">
-      <div className="pt-20 pb-16 border-b border-border">
-        <span className="font-mono-dm text-[11px] tracked text-muted-foreground block mb-5">[ join us ]</span>
+      <div className="pt-20 pb-16">
+        <span className="font-mono-dm text-[11px] tracked text-muted-foreground block mb-5">[ work with us ]</span>
         <h1 className="text-[clamp(2.8rem,6vw,6rem)] font-bold leading-[0.93] tracking-tight">
           Work with us<br />
           <span className="italic font-normal">or join us.</span>
@@ -586,35 +637,36 @@ function JoinPage() {
       </div>
 
       {tab === "contact" && (
-        <div className="py-16 grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-20">
+        <div className="pt-[48px] pb-12 grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-20">
           <div>
-            <p className="text-[15px] font-medium text-foreground/80 leading-relaxed mb-8">
-              We work with a limited number of clients at a time. If you have a specific problem and want to talk through whether we are a good fit, reach out below.
+            <p className="text-base text-muted-foreground leading-relaxed mb-8">
+              We work with a limited number of clients at a time. If you have a specific problem and want to talk through whether we are a good fit, reach out via the form at right, or email us at <span className="font-bold text-foreground">mbgci@mit.edu</span>.
             </p>
-            <div className="space-y-4">
+            {/* <div className="space-y-4">
               <div>
                 <span className="font-mono-dm text-[11px] tracked text-muted-foreground">[ email ]</span>
-                <div className="text-[15px] font-bold mt-1">laranda@mit.edu</div>
+                <div className="text-[15px] font-bold mt-1">mbgci@mit.edu</div>
               </div>
               <div>
                 <span className="font-mono-dm text-[11px] tracked text-muted-foreground">[ location ]</span>
                 <div className="text-[15px] font-bold mt-1">Cambridge, MA</div>
               </div>
-            </div>
+            </div> */}
           </div>
 
           {sent ? (
             <div className="flex flex-col justify-center">
               <span className="font-mono-dm text-[11px] tracked text-muted-foreground mb-3">[ received ]</span>
-              <p className="text-2xl font-bold mb-3">We got your note.</p>
-              <p className="text-[15px] font-medium text-muted-foreground">We will be back to you within two business days.</p>
+              <p className="text-2xl font-bold mb-3">We've received your message.</p>
+              <p className="text-[15px] font-medium text-muted-foreground">We will get back to you as soon as we can.</p>
             </div>
           ) : (
             <form onSubmit={submit} className="space-y-5">
               {[
-                { id: "name", label: "[ name ]", ph: "Your name" },
-                { id: "company", label: "[ company ]", ph: "Company or institution" },
-                { id: "email", label: "[ email ]", ph: "you@company.com" },
+                { id: "name", ph: "Your name" }, // label: "[ name ]"
+                { id: "company", ph: "Company or organization" }, // label: "[ company ]"
+                { id: "email", ph: "email@company.com" }, // label: "[ email ]"
+                { id: "subject", ph: "Subject" },
               ].map((f) => (
                 <div key={f.id}>
                   <label className="font-mono-dm text-[11px] tracked text-muted-foreground block mb-2">{f.label}</label>
@@ -629,21 +681,25 @@ function JoinPage() {
                 </div>
               ))}
               <div>
-                <label className="font-mono-dm text-[11px] tracked text-muted-foreground block mb-2">[ message ]</label>
+                {/* <label className="font-mono-dm text-[11px] tracked text-muted-foreground block mb-2">[ message ]</label> */}
                 <textarea
                   rows={4}
-                  placeholder="Tell us what you are working on and what kind of help you need."
+                  placeholder="Your message" // "Tell us what you are working on and what kind of help you need."
                   required
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   className="w-full bg-secondary border border-border px-4 py-3 text-[15px] font-medium text-foreground placeholder-muted-foreground/40 focus:outline-none focus:border-foreground/30 transition-colors resize-none"
                 />
               </div>
+              {error && (
+                <p className="text-[13px] font-medium text-destructive">{error}</p>
+              )}
               <button
                 type="submit"
-                className="font-mono-dm text-[11px] tracked border border-foreground/30 px-7 py-3 text-foreground hover:border-foreground transition-all duration-200"
+                disabled={sending}
+                className="font-mono-dm text-[11px] tracked border border-foreground/25 px-7 py-3 text-foreground hover:border-foreground disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
               >
-                [ send ]
+                {sending ? "[ sending... ]" : "[ send ]"}
               </button>
             </form>
           )}
@@ -651,49 +707,38 @@ function JoinPage() {
       )}
 
       {tab === "recruit" && (
-        <div className="py-16 grid grid-cols-1 lg:grid-cols-[1fr_1.5fr] gap-20">
+        <div className="pt-[48px] flex flex-col gap-5">
           <div>
-            <p className="text-[15px] font-medium text-foreground/80 leading-relaxed mb-8">We recruit from the MIT community. If you are an undergrad, grad student, or researcher who wants to do real consulting for the life sciences, we would love to hear from you!</p>
-            <div className="space-y-5">
-              {[
-                { label: "[ commitment ]", val: "2-5 hrs/week during engagements" },
-                { label: "[ compensation ]", val: "Varies by role and engagement." },
-                { label: "[ timing ]", val: "Rolling applications, no set cycle" },
-              ].map((item) => (
-                <div key={item.label}>
-                  <div className="font-mono-dm text-[11px] tracked text-muted-foreground mb-1">{item.label}</div>
-                  <div className="text-[15px] font-bold">{item.val}</div>
-                </div>
-              ))}
+            <p className="text-base text-muted-foreground leading-relaxed mb-8">If you're an MIT undergrad or grad student who wants to do real consulting for the life sciences, we would love to hear from you!</p>
+            <div className="text-muted-foreground pb-6">
+              <span className="font-mono-dm text-[11px] text-muted-foreground tracked">[ commitment ]</span>
+              <p className="text-base text-muted-foreground leading-relaxed mt-2"><span className="font-bold text-foreground">2-5 hrs/week</span> during engagements</p>
             </div>
-          </div>
-
-          <div className="space-y-8">
-            <div>
-              <span className="font-mono-dm text-[11px] tracked text-muted-foreground block mb-3">[ what we look for ]</span>
-              <ul className="space-y-3">
+            <div className="text-muted-foreground pb-6">
+              <span className="font-mono-dm text-[11px] text-muted-foreground tracked">[ timing ]</span>
+              <p className="text-base text-muted-foreground leading-relaxed mt-2">Indicate your interest on your general application to MIT Biotech Group in the fall, or at any other time of year, just shoot us an email at <span className="font-bold text-foreground">mbgci@mit.edu</span> introducing your background and why you want to join us.</p>
+            </div>
+            <div className="font-mono-dm text-[11px] tracked text-muted-foreground mb-1 pb-2">[ what we look for ]</div>
+              <ul>
                 {[
-                  "Student in the MIT life sciences community",
                   "Some exposure to the commercial or clinical side of biotech, even informally",
                   "Comfortable working on ambiguous problems without a lot of hand-holding",
-                  "Able to write clearly and talk to non-scientists without dumbing things down",
+                  "Able to write clearly and communicate efficiently with non-scientists",
                 ].map((item) => (
-                  <li key={item} className="flex gap-3 text-[15px] font-medium text-foreground/80 leading-relaxed">
-                    <span className="text-muted-foreground mt-1 shrink-0">·</span>
+                  <li key={item} className="flex gap-3 text-base text-muted-foreground leading-relaxed">
+                    <span className="text-muted-foreground leading-relaxed shrink-0">·</span>
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div className="border-t border-border pt-8">
+            {/* <div className="border-t border-border pt-8">
               <p className="text-[15px] font-medium text-muted-foreground mb-5">
-                Send a CV and a short note on what you are working on and why you are interested to:
+                Send a short note introducing your background and why you're interested in joining us to:
               </p>
-              <div className="font-mono-dm text-[11px] tracked text-muted-foreground mb-1">[ email ]</div>
-              <div className="text-xl font-bold">laranda@mit.edu</div>
-            </div>
-          </div>
+              <div className="text-xl font-bold">mbgci@mit.edu</div>
+            </div> */}
         </div>
       )}
     </div>
