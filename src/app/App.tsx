@@ -16,12 +16,17 @@ import mbgGroupPhotoImg from "../imports/mbg-group-photo.jpg";
 
 type Page = "about" | "practice" | "team" | "join";
 
-const PAGES: { id: Page; label: string }[] = [
-  { id: "about", label: "about" },
-  { id: "practice", label: "practice areas" },
-  { id: "team", label: "team" },
-  { id: "join", label: "work with us" },
+const PAGES: { id: Page; label: string; path: string }[] = [
+  { id: "about", label: "about", path: "/about" },
+  { id: "practice", label: "practice areas", path: "/practice" },
+  { id: "team", label: "team", path: "/team" },
+  { id: "join", label: "work with us", path: "/partner" },
 ];
+
+function pathToPage(pathname: string): Page {
+  if (pathname === "/join" || pathname === "/partner") return "join";
+  return PAGES.find((p) => p.path === pathname)?.id ?? "about";
+}
 
 const PRACTICES = [
   {
@@ -154,7 +159,7 @@ const TESTIMONIALS = [
 ];
 
 export default function App() {
-  const [page, setPage] = useState<Page>("about");
+  const [page, setPage] = useState<Page>(() => pathToPage(window.location.pathname));
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -164,10 +169,21 @@ export default function App() {
     return () => window.removeEventListener("scroll", fn);
   }, []);
 
+  useEffect(() => {
+    if (window.location.pathname === "/") {
+      window.history.replaceState({}, "", PAGES.find((p) => p.id === "about")!.path);
+    }
+    const onPopState = () => setPage(pathToPage(window.location.pathname));
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
   const nav = (p: Page) => {
     setPage(p);
     setMenuOpen(false);
     window.scrollTo({ top: 0 });
+    const path = PAGES.find((x) => x.id === p)!.path;
+    if (window.location.pathname !== path) window.history.pushState({}, "", path);
   };
 
   return (
@@ -176,6 +192,7 @@ export default function App() {
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&family=DM+Mono:wght@400;500&display=swap');
         * { scrollbar-width: none; }
         *::-webkit-scrollbar { display: none; }
+        ::selection { background: var(--foreground); color: var(--background); }
         body { font-family: 'DM Sans', sans-serif; }
         .font-mono-dm { font-family: 'DM Mono', monospace; }
         .tracked { letter-spacing: 0.18em; }
@@ -195,6 +212,11 @@ export default function App() {
           transition: transform 0.25s ease;
         }
         .ul-link:hover::after { transform: scaleX(1); }
+        @keyframes fadeInUp {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
+        .enter-fade { animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
       `}</style>
 
       {/* NAV */}
@@ -341,12 +363,12 @@ function AboutPage({ nav }: { nav: (p: Page) => void }) {
         <h1 className="text-[clamp(2.8rem,7vw,7.5rem)] font-bold leading-[0.92] tracking-tight text-foreground max-w-4xl mb-10">Strategy for<br />biotech that<br /><span className="italic font-normal">actually works.</span></h1>
         <div className="max-w-2xl">
           <p className="text-lg font-medium text-foreground/80 leading-relaxed mb-5">MIT Biotech Consulting Group is a student-led strategy team with a focus on the life sciences industry.</p>
-          <p className="text-base text-muted-foreground leading-relaxed">We started the group because we kept seeing the same frustrations. Consultants good at strategy weren't good at the the science, and scientists understood the biology but not what investors or partners needed to hear. We bring knowledge of both domains to our work.</p>
+          <p className="text-base text-muted-foreground leading-relaxed">We started the group because we kept seeing the same frustrations. Consultants good at strategy weren't good at the science, and scientists understood the biology but not what investors or partners needed to hear. We bring knowledge of both domains to our work.</p>
         </div>
         <div className="mt-12 flex gap-4">
           <button
             onClick={() => nav("practice")}
-            className="font-mono-dm text-[11px] tracked border border-foreground/25 px-7 py-3 text-foreground hover:border-foreground transition-all duration-200"
+            className="font-mono-dm text-[11px] tracked border border-foreground/25 px-7 py-3 text-foreground hover:border-foreground active:scale-[0.97] transition-all duration-200"
           >
             [ what we do ]
           </button>
@@ -421,13 +443,13 @@ function AboutPage({ nav }: { nav: (p: Page) => void }) {
 
       {/* Closing CTA */}
       <section>
-        <div className="max-w-[1320px] mx-auto px-6 md:px-10 py-20 border-t border-border flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold leading-tight max-w-lg">Have a problem we can help with?</h2>
-          </div>
+        <div className="max-w-[1320px] mx-auto px-6 md:px-10 py-28 border-t border-border flex flex-col md:flex-row items-start md:items-center justify-between gap-10">
+          <h2 className="text-[clamp(2.16rem,4.95vw,4.28rem)] leading-[0.95] tracking-tight max-w-xl">
+            Have a problem<br />we can help with?
+          </h2>
           <button
             onClick={() => nav("join")}
-            className="font-mono-dm text-[11px] tracked border border-foreground/25 px-7 py-3 text-foreground hover:border-foreground transition-all duration-200 shrink-0"
+            className="font-mono-dm text-[11px] tracked bg-foreground text-background px-8 py-4 hover:opacity-80 active:scale-[0.97] transition-all duration-200 shrink-0"
           >
             [ reach out ]
           </button>
@@ -528,10 +550,10 @@ function PracticePage() {
 function MemberCard({ m }: { m: { name: string; focus: string; bio: string; photo: string | null } }) {
   const focusClean = m.focus.replace(/^\[|\]$/g, "").trim();
   return (
-    <div className="group bg-card hover:bg-secondary/40 transition-colors duration-200 flex flex-col border border-border">
+    <div className="group bg-card hover:bg-secondary/40 hover:-translate-y-1 transition-all duration-200 flex flex-col border border-border">
       <div className="w-full aspect-[3/4] bg-muted overflow-hidden">
         {m.photo ? (
-          <img src={m.photo} alt={m.name} className="w-full h-full object-cover object-top grayscale" />
+          <img src={m.photo} alt={m.name} className="w-full h-full object-cover object-top grayscale transition-all duration-500 group-hover:grayscale-0" />
         ) : (
           <div className="w-full h-full bg-secondary" />
         )}
@@ -583,11 +605,27 @@ function TeamPage() {
 /* ─── JOIN US / CONTACT PAGE ─────────────────────────────────── */
 
 function JoinPage() {
-  const [tab, setTab] = useState<"contact" | "recruit">("contact");
+  const [tab, setTab] = useState<"contact" | "recruit">(() =>
+    window.location.pathname === "/join" ? "recruit" : "contact"
+  );
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [form, setForm] = useState({ name: "", company: "", email: "", subject: "", message: "" });
+
+  useEffect(() => {
+    const onPopState = () => {
+      setTab(window.location.pathname === "/join" ? "recruit" : "contact");
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
+  const switchTab = (t: "contact" | "recruit") => {
+    setTab(t);
+    const path = t === "recruit" ? "/join" : "/partner";
+    if (window.location.pathname !== path) window.history.pushState({}, "", path);
+  };
 
   const submit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -626,8 +664,8 @@ function JoinPage() {
         {(["contact", "recruit"] as const).map((t) => (
           <button
             key={t}
-            onClick={() => setTab(t)}
-            className={`font-mono-dm text-[11px] tracked px-8 py-4 transition-colors duration-150 border-b-2 ${
+            onClick={() => switchTab(t)}
+            className={`font-mono-dm text-[11px] tracked px-8 py-4 active:scale-[0.97] transition-all duration-150 border-b-2 ${
               tab === t ? "border-foreground text-foreground" : "border-transparent text-muted-foreground hover:text-foreground"
             }`}
           >
@@ -655,7 +693,7 @@ function JoinPage() {
           </div>
 
           {sent ? (
-            <div className="flex flex-col justify-center">
+            <div className="flex flex-col justify-center enter-fade">
               <span className="font-mono-dm text-[11px] tracked text-muted-foreground mb-3">[ received ]</span>
               <p className="text-2xl font-bold mb-3">We've received your message.</p>
               <p className="text-[15px] font-medium text-muted-foreground">We will get back to you as soon as we can.</p>
@@ -697,7 +735,7 @@ function JoinPage() {
               <button
                 type="submit"
                 disabled={sending}
-                className="font-mono-dm text-[11px] tracked border border-foreground/25 px-7 py-3 text-foreground hover:border-foreground disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
+                className="font-mono-dm text-[11px] tracked border border-foreground/25 px-7 py-3 text-foreground hover:border-foreground active:scale-[0.97] disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200"
               >
                 {sending ? "[ sending... ]" : "[ send ]"}
               </button>
