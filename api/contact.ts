@@ -64,7 +64,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   try {
     await transporter.sendMail({
-      from: process.env.SENDER_EMAIL || "MBGCI Website <onboarding@resend.dev>",
+      from: process.env.SENDER_EMAIL || "MBGCI Website <no-reply@mbgci.com>",
       to: TO_EMAIL,
       replyTo: email,
       subject: subject ? subject : `Client Inquiry from ${name}`,
