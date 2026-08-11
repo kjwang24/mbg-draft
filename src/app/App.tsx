@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Analytics } from "@vercel/analytics/next"
 import katherineImg from "../imports/Katherine.jpg";
 import tracyImg from "../imports/Tracy.jpg";
 import zainImg from "../imports/Zain.jpg";
@@ -68,7 +69,7 @@ const ADDITIONAL_SERVICES = [
 const CORE_CONSULTANTS = [
   {
     name: "Liam Aranda-Michel",
-    focus: "[ bioprinting · regenerative medicine ]",
+    focus: "[ tissue engineering · regenerative medicine ]",
     bio: "Studies bioengineering with a focus in regenerative medicine. Research in 3D bioprinting.",
     photo: liamImg,
   },
@@ -146,13 +147,13 @@ const CONSULTING_PARTNERS = [
 const TESTIMONIALS = [
   {
     quote: "The MBGCI team impressed us with their ability to navigate a highly complex and ever-changing regulatory landscape and identify the most appropriate and accelerated path forward for our product. Their work reflects the kind of rigorous, creative thinking that makes a real difference.",
-    name: "Julie O'Brien",
+    name: "Julie O'Brien, MPA",
     org: "CEO, OpenBiome",
     tag: "[ strategy ]",
   },
   {
     quote: "Your suggested path forward truly captures the vision we have for the organization, and it was energizing to see it reflected so clearly in your recommendations. Thank you for the thoughtful insights, feedback, and thorough analysis.",
-    name: "Wendy Pouliot",
+    name: "Wendy Pouliot, PhD",
     org: "President, BOSLab",
     tag: "[ digital presence ]",
   },
